@@ -17,8 +17,10 @@ const config = {
   },
   devServer: {
     open: true,
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     port: 3000,
+    allowedHosts: 'all'
+    // could also be a discrete number in an array. e.g. ['domain', '.subdomain']
   },
   plugins: [
     new HtmlWebpackPlugin({
