@@ -11,13 +11,13 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
-    open: true,
-    host: "127.0.0.1",
+    open: false,
+    host: "0.0.0.0",
     port: 3000,
     allowedHosts: 'all'
     // could also be a discrete number in an array. e.g. ['domain', '.subdomain']
