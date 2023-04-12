@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import {TestApiButton} from "./TestApiButton"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+        <TestApiButton />
       </header>
     </div>
   );
