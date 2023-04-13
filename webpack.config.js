@@ -3,6 +3,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { TurnedIn } = require("@mui/icons-material");
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -16,11 +17,16 @@ const config = {
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
-    open: false,
-    host: "0.0.0.0",
+    // open: true,
+    // hot: true, //enable webpack hot module replacement
+    // host: "0.0.0.0",
+    // port: 3000,
+    // allowedHosts: 'all',
+    // // could also be a discrete number in an array. e.g. ['domain', '.subdomain']
+    // historyApiFallback: true,
+    // static: "./dist",
     port: 3000,
-    allowedHosts: 'all'
-    // could also be a discrete number in an array. e.g. ['domain', '.subdomain']
+    historyApiFallback: { index: "/", disableDotRule: true }, //resolved issue with 404 on other routes
   },
   plugins: [
     new HtmlWebpackPlugin({
