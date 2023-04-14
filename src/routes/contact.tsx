@@ -1,25 +1,35 @@
-import React from "react";
-import { Form } from "react-router-dom";
+import React from 'react';
+import { Form, useLoaderData, useFetcher } from "react-router-dom";
+import { getContact, contact, updateContact } from '../contacts';
 
-interface contact {
-    first: string,
-    last: string,
-    avatar: string,
-    twitter: string,
-    notes: string,
-    favorite: boolean,
+export const loader = async ({params}) => {
+    const contact = await getContact(params.contactId);
+    if (!contact) {
+        throw new Response("", {
+            status: 404,
+            statusText: "Not Found"
+        })
+      }
+    return contact;
+}
+
+export const action = async( {request, params }) => {
+    let formData = await request.formData();
+    return updateContact(params.contactId, {
+        favorite: formData.get("favorite") === "true",
+    });
 }
 
 export default function Contact() {
-    console.log("in contact")
-  const contact: contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+    const contact = useLoaderData() as contact;
+//   const contact = {
+//     first: "Your",
+//     last: "Name",
+//     avatar: "https://placekitten.com/g/200/200",
+//     twitter: "your_handle",
+//     notes: "Some notes",
+//     favorite: true,
+//   };
 
   return (
     <div id="contact">
@@ -62,6 +72,7 @@ export default function Contact() {
           <Form
             method="post"
             action="destroy"
+            // This is a relative action, and will match the route contact/id/destory when submitted
             onSubmit={(event) => {
               if (
                 !confirm(
@@ -80,12 +91,18 @@ export default function Contact() {
   );
 }
 
-function Favorite( props: any ) {
-    const {contact} = props;
+function Favorite({ contact }) {
   // yes, this is a `let` for later
+  const fetcher = useFetcher();
+//   fetchers allow interactions with loaders without navigations
   let favorite = contact.favorite;
+//   This if checks if the fetcher is processing any form data - if so we optimistically use the value from the form
+//  after the fetcher is done, there will be no more formData, so the "true" value will populate again
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get("favorite") === "true"
+  }
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -97,6 +114,6 @@ function Favorite( props: any ) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
