@@ -28,22 +28,6 @@ const JSXRouter = createBrowserRouter(
   )
 );
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Root />,
-//     errorElement: <ErrorPage />,
-//     loader: routLoader,
-//     action: rootAction,
-//     children: [
-//       {
-//         path: "/contacts/:contactId",
-//         element: <Contact />
-//       },
-//     ],
-//   },
-// ])
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={JSXRouter} />
