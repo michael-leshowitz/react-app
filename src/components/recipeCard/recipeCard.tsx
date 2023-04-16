@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardActionArea, CardContent, CardHeader, CardMedia,  SxProps, Box } from "@mui/material";
 import { IRecipeSnippit } from "../../context/types";
 import BurgerRating from "../rating/burgerRating";
+import PlaceHolder from "../../assets/PlaceHolderImage.png";
 
 interface IRecipeCardProps {
     custom_sx?: SxProps;
@@ -21,16 +22,13 @@ const RecipeCard = (props : IRecipeCardProps) => {
                     // classes = add another css class to the header. Accetps an object with key-value pairs
                     // component = Replace root element on header for another component. This component's default is a div.
                 />
-                { recipe_snippit.image ? (
-                    // TODO: Add placeholder image to cards
-                    <CardMedia 
-                        component="img"
-                        height="140"
-                        image={recipe_snippit.image}
-
-                    />
-                    ) : null 
-                }
+                    {/* // TODO: Add placeholder image to cards */}
+                <CardMedia 
+                    component="img"
+                    height="140"
+                    image={recipe_snippit.image ? recipe_snippit.image : PlaceHolder}
+                    // Need to configure the S3 image to render the image
+                />                
                 <CardContent>
                     {/* Place tag chiclets */}
                     <Box>

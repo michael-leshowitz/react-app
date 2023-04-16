@@ -9,6 +9,7 @@ export default function Index() {
         <a href="https://reactrouter.com">
           the docs at reactrouter.com
         </a>
+        {/* TODO: Create a grid of 6 Recipe cards for this page */}
         <RecipeCard
           recipe_snippit={{
             name: "Test-cipe",
