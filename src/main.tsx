@@ -5,14 +5,14 @@ import {
   createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
-  Route,
-} from "react-router-dom";
-import Root, {loader as routLoader, action as rootAction} from './routes/root';
-import EditContact, { action as editAction} from './routes/edit';
-import ErrorPage from './error-page';
-import Contact, {loader as contactLoader, action as contactAction} from './routes/contact';
-import { action as destroyAction } from './routes/destroy';
-import Index from './routes';
+  Route
+} from 'react-router-dom'
+import Root, { loader as routLoader, action as rootAction } from './routes/root'
+import EditContact, { action as editAction } from './routes/edit'
+import ErrorPage from './error-page'
+import Contact, { loader as contactLoader, action as contactAction } from './routes/contact'
+import { action as destroyAction } from './routes/destroy'
+import Index from './routes'
 
 const JSXRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -26,10 +26,10 @@ const JSXRouter = createBrowserRouter(
       </Route>
     </Route>
   )
-);
+)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={JSXRouter} />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
