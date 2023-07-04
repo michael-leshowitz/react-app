@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, Outlet, useLoaderData, Form, redirect, NavLink, useNavigation, useSubmit } from "react-router-dom";
 import { contact, getContacts, createContact } from "../contacts";
+import TopNav from "../components/TopNav/TopNav";
 
 export const action = async () => {
     const contact = await createContact();
@@ -26,7 +27,7 @@ useNavigation returns the current navigation state: it can be one of "idle" | "s
     */
    useEffect(() => {
     // This useEffect to track what happens when we use the back navigation after a search, where "q" now takes a null state
-    document!.getElementById("q")!.value = q;
+    (document!.getElementById("q") as HTMLInputElement)!.value = q;
    }, [q]);
 
 //    Navigation.location will show up when the app is navigating to a new URL and loading the data for it.
@@ -112,12 +113,14 @@ useNavigation returns the current navigation state: it can be one of "idle" | "s
             </ul>
           </nav>
         </div>
-        <div id="detail"
-        className={
-            navigation.state === "loading" ? "loading" : ""
-        }>
-            <Outlet />
-        </div>
+        <TopNav>
+          <div id="detail"
+          className={
+              navigation.state === "loading" ? "loading" : ""
+          }>
+              <Outlet />
+          </div>
+        </TopNav>
       </>
     );
   }

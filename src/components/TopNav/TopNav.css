@@ -1,0 +1,12 @@
+.top-bar-content {
+    width: 100%;
+}
+.top-bar-container {
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    height: 15rem;
+    /* display: flex;
+    padding:  */
+}
+
