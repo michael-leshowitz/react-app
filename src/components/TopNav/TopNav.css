@@ -5,15 +5,18 @@
     box-sizing: border-box;
     /* background-color: black; */
     color: white;
-    height: 15rem;
+    height: 10%;
     /* start to outline border */
     border-style: solid;
     border-color: blue;
     /* end outline border */
-    /* display: flex;
-    padding:  */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* padding:  */
 }
 .search-bar-container {
     width: 45%;
+    display: flex;
 }
 
