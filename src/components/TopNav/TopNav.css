@@ -3,10 +3,17 @@
 }
 .top-bar-container {
     box-sizing: border-box;
-    background-color: black;
+    /* background-color: black; */
     color: white;
     height: 15rem;
+    /* start to outline border */
+    border-style: solid;
+    border-color: blue;
+    /* end outline border */
     /* display: flex;
     padding:  */
+}
+.search-bar-container {
+    width: 45%;
 }
 
