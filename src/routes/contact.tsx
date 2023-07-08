@@ -7,7 +7,7 @@ export const loader = async ({params}) => {
     if (!contact) {
         throw new Response("", {
             status: 404,
-            statusText: "Not Found"
+            statusText: "Not Found Haha"
         })
       }
     return contact;
