@@ -7,7 +7,7 @@ NavMenu,
 NavBtn,
 NavBtnLink,
 } from './navbarElements';
-import SearchBar from '../searchbar/searchbar';
+import SearchBar from './searchbar/searchbar';
 
 const Navbar = () => {
     return (
