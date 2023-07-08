@@ -33,11 +33,12 @@ export async function createContact (): Promise<contact> {
   return contact
 }
 
-export async function getContact (id: string): Promise<contact | null | undefined> {
-  await fakeNetwork(`contact:${id}`)
-  const contacts: contact[] | null = await localforage.getItem('contacts')
-  const contact = (contacts != null) ? contacts.find(contact => contact.id === id) : null
-  return contact
+export async function getContact(id : string) {
+  await fakeNetwork(`contact:${id}`);
+  console.log(id)
+  let contacts : contact[]|null = await localforage.getItem("contacts");
+  let contact = contacts? contacts.find(contact => contact.id === id) : null;
+  return contact;
 }
 
 export async function updateContact (id: string, updates): Promise<contact> {
