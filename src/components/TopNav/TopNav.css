@@ -1,0 +1,22 @@
+.top-bar-content {
+    width: 100%;
+}
+.top-bar-container {
+    box-sizing: border-box;
+    /* background-color: black; */
+    color: white;
+    height: 10%;
+    /* start to outline border */
+    border-style: solid;
+    border-color: blue;
+    /* end outline border */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* padding:  */
+}
+.search-bar-container {
+    width: 45%;
+    display: flex;
+}
+
