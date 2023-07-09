@@ -5,7 +5,7 @@ export interface ITags {
     name: string;
 }
 
-export interface IRecipeSnippit {
+export interface IRecipeSnippet {
     name: string;
     image?: string;
     description: string;

@@ -1,18 +1,19 @@
 import React from "react";
-import { IRecipeSnippit } from "../context/types";
+import { IRecipeSnippet } from "../context/types";
 import axios from "axios";
 
-export const getTopRecipesInRange = async (lowerBound: number, upperBound: number): Promise<IRecipeSnippit[]> => {
+export const getTopRecipesInRange = async (lowerBound: number, upperBound: number): Promise<IRecipeSnippet[]> => {
     const config = {
         method: 'GET',
         url: `http://localhost:3002/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`,
     };
     // .request(config)
     const recipes = await axios
-        .get<IRecipeSnippit[]>(`http://localhost:3002/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`)
+        .get<IRecipeSnippet[]>(`http://localhost:3002/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`)
         .then((response) => response.data);
-    // turn recipes into recipe snippits
-    const recipeSnippits = recipes.map((recipe) => {
+    // turn recipes into recipe snippets
+    // TODO: Remove and return domain object snippets
+    const recipeSnippets = recipes.map((recipe) => {
         return ({
             name: recipe.name,
             description: "Placeholder",
@@ -20,5 +21,5 @@ export const getTopRecipesInRange = async (lowerBound: number, upperBound: numbe
             tags: [],
         });
     })
-    return recipeSnippits;
+    return recipeSnippets;
 }
