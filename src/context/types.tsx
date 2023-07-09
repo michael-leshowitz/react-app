@@ -9,6 +9,6 @@ export interface IRecipeSnippit {
     name: string;
     image?: string;
     description: string;
-    rating?: number;
+    rating: number;
     tags: ITags[];
 }

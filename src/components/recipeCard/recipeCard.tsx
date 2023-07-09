@@ -11,7 +11,6 @@ interface IRecipeCardProps {
 
 const RecipeCard = (props : IRecipeCardProps) => {
     const {custom_sx, recipe_snippit} = props;
-
     return (
         <Card sx={custom_sx? custom_sx : {maxWidth: 345}}>
             <CardActionArea>
@@ -22,7 +21,6 @@ const RecipeCard = (props : IRecipeCardProps) => {
                     // classes = add another css class to the header. Accetps an object with key-value pairs
                     // component = Replace root element on header for another component. This component's default is a div.
                 />
-                    {/* // TODO: Add placeholder image to cards */}
                 <CardMedia 
                     component="img"
                     height="140"
@@ -31,6 +29,7 @@ const RecipeCard = (props : IRecipeCardProps) => {
                 />                
                 <CardContent>
                     {/* Place tag chiclets */}
+                    {/* TODO: Update description box to static spacing */}
                     <Box>
                         {recipe_snippit.description}
                     </Box>

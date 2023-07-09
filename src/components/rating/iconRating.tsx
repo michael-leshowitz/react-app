@@ -17,15 +17,15 @@ interface IRatingColorProps {
     hoverColor?: string;
 }
 
-const StyledRating = styled(Rating)<{ $colorProps?: IRatingColorProps }>`
+const StyledRating = styled(Rating)<{ customcolorprops?: IRatingColorProps }>`
     & .MuiRating-iconFilled {
     // Just use the prop as normal
-    ${(props) => props.$colorProps?.filledColor? `color: ${props.$colorProps.filledColor}` : 'color: #69D169'}
+    ${(props) => props.customcolorprops?.filledColor? `color: ${props.customcolorprops.filledColor}` : 'color: #69D169'}
   }
   
   & .MuiRating-iconHover {
     // Just use the prop as normal
-    ${(props) => props.$colorProps?.hoverColor? `color: ${props.$colorProps.hoverColor}` : 'color: #04CE04'}
+    ${(props) => props.customcolorprops?.hoverColor? `color: ${props.customcolorprops.hoverColor}` : 'color: #04CE04'}
   }
 `;
 
@@ -44,7 +44,7 @@ const IconRating = (props : IIconRatingProps & RatingProps) : JSX.Element => {
         <StyledRating
             {...rest}
             value={value}
-            $colorProps={{filledColor: filledColor, hoverColor: hoverColor}}
+            customcolorprops={{filledColor: filledColor, hoverColor: hoverColor}}
             icon={icon}
             emptyIcon={emptyIcon}
             precision={precision}
