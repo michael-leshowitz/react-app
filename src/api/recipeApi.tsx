@@ -1,5 +1,5 @@
 import React from "react";
-import { IRecipeSnippet } from "../context/types";
+import { IRecipeSearchResult, IRecipeSnippet } from "../context/types";
 import axios from "axios";
 
 // TODO: Move "localhost..." to configurable value
@@ -23,4 +23,8 @@ export const getTopRecipesInRange = async (lowerBound: number, upperBound: numbe
         });
     })
     return recipeSnippets;
+}
+
+export const searchRecipeByKeyWord = async (keyWord: string, tags: string[] = []): Promise<IRecipeSearchResult[]> => {
+    return [];
 }

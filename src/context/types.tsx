@@ -12,3 +12,10 @@ export interface IRecipeSnippet {
     rating: number;
     tags: ITags[];
 }
+
+export interface IRecipeSearchResult {
+    name: string;
+    description: string;
+    rating: number;
+    tags: ITags[];
+}
