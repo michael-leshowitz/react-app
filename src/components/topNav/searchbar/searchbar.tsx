@@ -1,14 +1,19 @@
 import React from "react";
 import { Autocomplete, SxProps, TextField } from "@mui/material";
+import TagBar from "./TagBar";
+import { SearchBox } from "./searchBarElements";
 
 interface ISearchBarProps {
     testId?: string;
     custom_sx?: SxProps;
+    tags?: string[];
 }
 
 const SearchBar = (props: ISearchBarProps) : JSX.Element => {
     const {testId, custom_sx, ...rest} = props;
     return (
+        // TODO: Update to center tags with bar
+        <SearchBox>
         <Autocomplete 
             data-testId = {testId}
             freeSolo={false}
@@ -28,6 +33,8 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
             sx={custom_sx}
             {...rest}
         />
+        <TagBar tags={["tests"]} />
+        </SearchBox>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
-import TagBar from "./TagBar";
+import TagBar from "../../topNav/searchbar/TagBar";
 
 const SearchBar = () => {
 

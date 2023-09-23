@@ -2,6 +2,7 @@ import React from "react";
 import { IRecipeSnippet } from "../context/types";
 import axios from "axios";
 
+// TODO: Move "localhost..." to configurable value
 export const getTopRecipesInRange = async (lowerBound: number, upperBound: number): Promise<IRecipeSnippet[]> => {
     const config = {
         method: 'GET',
