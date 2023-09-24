@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --config dev.config.ts",
+    "build": "tsc && vite build --config dev.config.ts",
     "preview": "vite preview",
     "lint": "eslint src/*.tsx",
     "lint-fix": "eslint --fix src/*.tsx",

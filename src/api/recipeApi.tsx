@@ -1,6 +1,7 @@
 import React from "react";
 import { IRecipeSearchResult, IRecipeSnippet } from "../context/types";
 import axios from "axios";
+import { RecordVoiceOverSharp } from "@mui/icons-material";
 
 // TODO: Move "localhost..." to configurable value
 export const getTopRecipesInRange = async (lowerBound: number, upperBound: number): Promise<IRecipeSnippet[]> => {
@@ -26,5 +27,15 @@ export const getTopRecipesInRange = async (lowerBound: number, upperBound: numbe
 }
 
 export const searchRecipeByKeyWord = async (keyWord: string, tags: string[] = []): Promise<IRecipeSearchResult[]> => {
-    return [];
+    const recipes = await axios.get<IRecipeSnippet[]>(`http://localhost:3002/recipe/query-by?searchText=${keyWord}`)
+        .then((response) => response.data);
+    const recipeSnippets = recipes.map((recipe) => {
+        return {
+            name: recipe.name,
+            description: recipe.description,
+            rating: recipe.rating,
+            tags: recipe.tags,
+        }
+    });
+    return recipeSnippets;
 }
