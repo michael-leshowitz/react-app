@@ -1,1 +1,1 @@
-GET http://localhost:3000/query-by/2
+GET http://localhost:3006/recipe/query-by?searchText=cipe

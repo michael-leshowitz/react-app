@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Autocomplete, SxProps, TextField } from "@mui/material";
 import TagBar from "./TagBar";
 import { SearchBox } from "./searchBarElements";
+import { searchRecipeByKeyWord } from "../../../api/recipeApi";
+import { IRecipeSnippet } from "../../../context/types";
 
 interface ISearchBarProps {
     testId?: string;
@@ -14,12 +16,15 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
 
     const [input, setInput] = useState<string>("");
 
-    const fetchData = (keyWord: string): void => {
-        
+    const fetchData = async (keyWord: string): Promise<IRecipeSnippet[]> => {
+        const results = await searchRecipeByKeyWord(keyWord);
+        console.log(results);
+        return results;
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         setInput(e.target.value);
+        const results = fetchData(e.target.value);
     }
     return (
         // TODO: Update to center tags with bar

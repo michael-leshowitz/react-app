@@ -1,0 +1,4 @@
+{
+    "/recipe/*": "/$1",
+    "/query-by?searchText=:key": "/query-by?name_like=:key"
+}

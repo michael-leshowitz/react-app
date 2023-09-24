@@ -1,17 +1,18 @@
 import React from "react";
 import { IRecipeSearchResult, IRecipeSnippet } from "../context/types";
 import axios from "axios";
-import { RecordVoiceOverSharp } from "@mui/icons-material";
+
+const DOMAIN_ENDPOINT = import.meta.env.VITE_DOMAIN_SERVICE_END_POINT;
 
 // TODO: Move "localhost..." to configurable value
 export const getTopRecipesInRange = async (lowerBound: number, upperBound: number): Promise<IRecipeSnippet[]> => {
     const config = {
         method: 'GET',
-        url: `http://localhost:3002/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`,
+        url: `${DOMAIN_ENDPOINT}/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`,
     };
     // .request(config)
     const recipes = await axios
-        .get<IRecipeSnippet[]>(`http://localhost:3002/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`)
+        .get<IRecipeSnippet[]>(`${DOMAIN_ENDPOINT}/recipe/most-popular?lowerBoundString=${lowerBound}&upperBoundString=${upperBound}`)
         .then((response) => response.data);
     // turn recipes into recipe snippets
     // TODO: Remove and return domain object snippets
@@ -27,7 +28,7 @@ export const getTopRecipesInRange = async (lowerBound: number, upperBound: numbe
 }
 
 export const searchRecipeByKeyWord = async (keyWord: string, tags: string[] = []): Promise<IRecipeSearchResult[]> => {
-    const recipes = await axios.get<IRecipeSnippet[]>(`http://localhost:3002/recipe/query-by?searchText=${keyWord}`)
+    const recipes = await axios.get<IRecipeSnippet[]>(`${DOMAIN_ENDPOINT}/recipe/query-by?searchText=${keyWord}`)
         .then((response) => response.data);
     const recipeSnippets = recipes.map((recipe) => {
         return {

@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --config dev.config.ts",
+    "dev": "env-cmd -f ./environments/.dev.env vite --config dev.config.ts",
+    "proxy": "env-cmd -f ./environments/.dev.proxy.env vite --config dev.config.ts",
     "build": "tsc && vite build --config dev.config.ts",
     "preview": "vite preview",
     "lint": "eslint src/*.tsx",
     "lint-fix": "eslint --fix src/*.tsx",
-    "dev-json-server": "json-server --watch src/dev-tools/json-server/db.json"
+    "dev-json-server": "json-server -p 3006 --watch src/dev-tools/json-server/db.json --host 0.0.0.0 --routes src/dev-tools/json-server/routes.json"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -36,6 +37,7 @@
     "@types/sort-by": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.44.0",
     "eslint-config-standard-with-typescript": "^36.0.0",
     "eslint-plugin-import": "^2.27.5",
