@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/*.tsx",
-    "lint-fix": "eslint --fix src/*.tsx"
+    "lint-fix": "eslint --fix src/*.tsx",
+    "dev-json-server": "json-server --watch src/dev-tools/json-server/db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",

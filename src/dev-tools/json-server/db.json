@@ -1,0 +1,6 @@
+{
+    "query-by": [
+        {"id": 1, "name": "Test-cipe", "owner":1, "rating": 3.5, "description":"some amount of description"},
+        {"id": 2, "name": "Test2-cipe", "owner":1, "rating": 1.5, "description":"some amount of description"}
+    ]
+}
