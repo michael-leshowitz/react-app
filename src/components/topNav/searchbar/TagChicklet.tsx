@@ -4,10 +4,11 @@ import React from "react";
 interface ITagChicklet {
     // TODO: Update to an object
     tag: string
+    key: string
 }
 
 const TagChicklet = (props: ITagChicklet): JSX.Element => {
-    const { tag } = props;
+    const { tag, key } = props;
     const handleClick = (): void => {
     }
     return (
@@ -15,6 +16,7 @@ const TagChicklet = (props: ITagChicklet): JSX.Element => {
             label={`${tag}`}
             clickable
             onClick={handleClick}
+            key={key}
         />
     )
 }

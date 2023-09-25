@@ -15,9 +15,9 @@ const TagBar = (props: ITagBar): JSX.Element => {
     return (
         <div className="TagBar">
             {
-                tags.map((tag) => {
+                tags.map((tag,index) => {
                         return (
-                            <TagChicklet tag={tag} />
+                            <TagChicklet tag={tag} key={`tag_${index}`} />
                         )
                     }
                 )

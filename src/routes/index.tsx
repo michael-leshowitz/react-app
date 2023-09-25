@@ -24,6 +24,7 @@ export default function Index() {
     return ( 
         (!recipeSnippets.length?
           // TODO: Consider some loading indicator
+          // Consider failed request?
           null
           :<RecipeCardGrid RecipeSnippets={recipeSnippets} />
         )
