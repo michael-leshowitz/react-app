@@ -5,6 +5,7 @@ import TagBar from "./TagBar";
 import { SearchBox } from "./searchBarElements";
 import { searchRecipeByKeyWord } from "../../../api/recipeApi";
 import { IRecipeSnippet } from "../../../context/types";
+import { useNavigate } from "react-router-dom";
 
 interface ISearchBarProps {
     testId?: string;
@@ -16,8 +17,10 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
     const {testId, custom_sx, ...rest} = props;
 
     const [input, setInput] = useState<string>("");
-    const [options, setOptions] = useState<string[]>([]);
+    const [options, setOptions] = useState<IRecipeSnippet[]>();
     const [optionsLoading, setOptionsLoading] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
     const fetchData = async (keyWord: string): Promise<IRecipeSnippet[]> => {
         const results = await searchRecipeByKeyWord(keyWord);
@@ -31,17 +34,21 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
             return;
         }
         setOptionsLoading(true);
-        const results = await fetchData(e.target.value)
-            .then(
-                (results) => results.map((recipe) => recipe.name)
-            );
+        const results = await fetchData(e.target.value);
         setOptions(results)
         setOptionsLoading(false);
     }
 
+    const getOptionNames = (): string[] => {
+        const optionNames = options? options.map((option) => option.name)
+        : [];
+        return optionNames;
+    }
+
     const handleKeyDown = (e): void => {
         if (e && e.code == "Enter") {
-            //Code for navigation
+            navigate(`/recipe/search/${input}`, { state: {options:options}})
+            // TODO: Clear inputs on enter
         }
     }
     return (
@@ -53,7 +60,7 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
             freeSolo={false}
             id={`${testId}_search`}
             // Options are the autocomplete chocies to show up
-            options={options}
+            options={getOptionNames()}
             loading={optionsLoading}
             forcePopupIcon={false}
             onKeyDown={handleKeyDown}

@@ -13,6 +13,7 @@ import ErrorPage from './error-page'
 import Contact, { loader as contactLoader, action as contactAction } from './routes/contact'
 import { action as destroyAction } from './routes/destroy'
 import Index from './routes'
+import RecipeSearchResults from './routes/recipeSearchResult'
 
 const JSXRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const JSXRouter = createBrowserRouter(
       <Route errorElement={<ErrorPage/>}>
         <Route element={<Contact/>} path='contacts/:contactId' loader={contactLoader} action={contactAction} />
         <Route index={true} element={<Index />} />
+        <Route element={<RecipeSearchResults />} path='recipe/search/:keyword'/>
         {/* In general, all routes should have their own loaders */}
         <Route element={<EditContact/>} path='contacts/:contactId/edit' loader={contactLoader} action={editAction}/>
         <Route element={<EditContact/>} path='contacts/:contactId/destroy' action={destroyAction} errorElement={<div>Oops there was an erro</div>}/>
