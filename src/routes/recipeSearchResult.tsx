@@ -1,6 +1,7 @@
 import React from "react";
 import { IRecipeSnippet } from "../context/types";
 import { useLocation } from "react-router-dom";
+import RecipeCardGrid from "../components/recipeCard/recipeCardGrid";
 
 interface IRecipeSearchResultProps {
     options?: IRecipeSnippet[]
@@ -18,8 +19,8 @@ const RecipeSearchResults = (proper: IRecipeSearchResultProps) => {
     const { options } = state;
     return (
         <div>
-            {options?
-                options.map((result) => result.name)
+            {options.length?
+                <RecipeCardGrid RecipeSnippets={options} />
                 : "No results"
             }
         </div>

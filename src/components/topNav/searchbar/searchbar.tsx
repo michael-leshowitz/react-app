@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Autocomplete, Button, IconButton, InputAdornment, SxProps, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Autocomplete, Button, IconButton, InputAdornment, SxProps, TextField, getTooltipUtilityClass } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import TagBar from "./TagBar";
 import { SearchBox } from "./searchBarElements";
 import { searchRecipeByKeyWord } from "../../../api/recipeApi";
-import { IRecipeSnippet } from "../../../context/types";
+import { IRecipeSnippet, ITags } from "../../../context/types";
 import { useNavigate } from "react-router-dom";
+import { getTopTags } from "../../../api/tagApi";
 
 interface ISearchBarProps {
     testId?: string;
@@ -19,8 +20,23 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
     const [input, setInput] = useState<string>("");
     const [options, setOptions] = useState<IRecipeSnippet[]>();
     const [optionsLoading, setOptionsLoading] = useState<boolean>(false);
+    const [tags, setTags] = useState<ITags[]>([]);
 
     const navigate = useNavigate();
+
+    const fetchTopTags = async(): Promise<ITags[]> => {
+        const topTags = await getTopTags(0);
+        return topTags;
+    }
+
+    useEffect(() => {
+        // Get top tags
+        fetchTopTags().then(
+            data => {
+                setTags(data)
+            }
+        )
+    }, []);
 
     const fetchData = async (keyWord: string): Promise<IRecipeSnippet[]> => {
         const results = await searchRecipeByKeyWord(keyWord);
@@ -86,7 +102,10 @@ const SearchBar = (props: ISearchBarProps) : JSX.Element => {
             sx={custom_sx}
             {...rest}
         />
+        {(tags.length >=1) ? 
         <TagBar tags={["tests"]} />
+        : null
+        }
         </SearchBox>
     )
 }
